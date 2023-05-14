@@ -57,6 +57,7 @@ inline int TSMap<Key, Data>::FindID(const Key& key)
 	  return -1;
 	}
   }
+	return 0;
 }
 
 template<class Key, class Data>
@@ -70,8 +71,8 @@ inline TSMap<Key, Data>::TSMap(int _size)
 
   for (int i = 0; i < size; i++)
   {
-	items[i].key = NULL;
-	items[i].data = NULL;
+	items[i].key = 0;
+	items[i].data = 0;
   }
 }
 
@@ -93,8 +94,8 @@ inline TSMap<Key, Data>::~TSMap()
 {
   if (items != nullptr) { delete[] items; }
   items = nullptr;
-  size = NULL;
-  count = NULL;
+  size = 0;
+  count = 0;
 }
 
 template<class Key, class Data>

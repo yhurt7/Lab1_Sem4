@@ -27,14 +27,14 @@ public:
   Key GetRChildKey(const Key& key);
   Data GetValue(const Key& key);
   void Add(const Key& key, const Data& value);
-  void Del(const Key& k);
+  void Del(const Key& key);
 };
 
 template<class Key, class Data>
 inline TTreeMap<Key, Data>::TTreeMap()
 {
   pRoot = new TNode;
-  pRoot->data = NULL;
+  pRoot->data = 0;
   pRoot->pLeft = nullptr;
   pRoot->pRight = nullptr;
 }
@@ -70,7 +70,7 @@ inline Key TTreeMap<Key, Data>::GetLChildKey(const Key& key)
 
   while (curr != nullptr) {
 	if (curr->data.key == key) {
-	  if (curr->pLeft == nullptr) { return NULL; }
+	  if (curr->pLeft == nullptr) { return 0; }
 	  else { return curr->pLeft->data.key; }
 	}
 	else {
@@ -93,7 +93,7 @@ inline Key TTreeMap<Key, Data>::GetRChildKey(const Key& key)
 
   while (curr != nullptr) {
 	if (curr->data.key == key) {
-	  if (curr->pRight == nullptr) { return NULL; }
+	  if (curr->pRight == nullptr) { return 0; }
 	  else { return curr->pRight->data.key; }
 	}
 	else {
@@ -164,15 +164,15 @@ inline void TTreeMap<Key, Data>::Add(const Key& key, const Data& value)
 }
 
 template<class Key, class Data>
-inline void TTreeMap<Key, Data>::Del(const Key& k)
+inline void TTreeMap<Key, Data>::Del(const Key& key)
 {
   TNode* y = nullptr;
   TNode* x = pRoot;
 
   while (x != nullptr) {
-	if (x->data.key == k) { break; }
+	if (x->data.key == key) { break; }
 	y = x;
-	if (k < x->data.key) {
+	if (key < x->data.key) {
 	  x = x->pLeft;
 	}
 	else {

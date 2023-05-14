@@ -21,7 +21,7 @@ public:
   Data GetValue(const Key& key);
   Data& operator[](Key k);
   void Add(const Key& key, const Data& value);
-  void Del(const Key& k);
+  void Del(const Key& key);
 
   template<class T>
   friend std::ostream& operator<<(std::ostream& ostr, const TMap<Key, Data>& _map);
@@ -32,7 +32,7 @@ int TMap<Key, Data>::FindID(Key k)
 {
   for (int i = 0; i < size; i++)
   {
-    if (keys[i] != NULL)
+    if (keys[i] != 0)
     {
       if (keys[i] == k)
       {
@@ -56,8 +56,8 @@ TMap<Key, Data>::TMap(int _size)
 
   for (int i = 0; i < size; i++)
   {
-    keys[i] = NULL;
-    items[i] = NULL;
+    keys[i] = 0;
+    items[i] = 0;
   }
 }
 
@@ -118,7 +118,7 @@ Data& TMap<Key, Data>::operator[](Key k)
 {
   for (int i = 0; i < size; i++)
   {
-    if (keys[i] != NULL)
+    if (keys[i] != 0)
     {
       if (keys[i] == k)
       {
@@ -126,6 +126,7 @@ Data& TMap<Key, Data>::operator[](Key k)
       }
     }
   }
+	return items[0];
 }
 
 template<class Key, class Data>
@@ -142,15 +143,15 @@ void TMap<Key, Data>::Add(const Key& key, const Data& value)
 }
 
 template<class Key, class Data>
-void TMap<Key, Data>::Del(const Key& k)
+void TMap<Key, Data>::Del(const Key& key)
 {
   if (count > 0)
   {
-    int i = FindID(k);
+    int i = FindID(key);
     if (i != -1)
     {
-      keys[i] = NULL;
-      items[i] = NULL;
+      keys[i] = 0;
+      items[i] = 0;
       for (; i < count - 1; i++)
       {
         keys[i] = keys[i + 1];

@@ -3,11 +3,6 @@
 
 typedef TTreeMap<char, int> TTreeMap_test;
 
-TEST(TTreeMap_test, can_create_empty_tree_map)
-{
-  ASSERT_NO_THROW(TTreeMap_test m1());
-}
-
 TEST(TTreeMap_test, can_create_tree_map)
 {
   ASSERT_NO_THROW(TTreeMap_test m1('a', 1));

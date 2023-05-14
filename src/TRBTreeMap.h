@@ -35,7 +35,7 @@ public:
   Key GetRChildKey(const Key& key);
   Data GetValue(const Key& key);
   void Add(const Key& key, const Data& value);
-  void Del(const Key& k);
+  void Del(const Key& key);
 };
 
 template<class Key, class Data>
@@ -208,7 +208,7 @@ template<class Key, class Data>
 inline TRBTreeMap<Key, Data>::TRBTreeMap()
 {
   TNULL = new TNode;
-  TNULL->data = NULL;
+  TNULL->data = 0;
   TNULL->blackColor = true;
   TNULL->pLeft = nullptr;
   TNULL->pRight = nullptr;
@@ -352,16 +352,16 @@ inline void TRBTreeMap<Key, Data>::Add(const Key& key, const Data& value)
 }
 
 template<class Key, class Data>
-inline void TRBTreeMap<Key, Data>::Del(const Key& k)
+inline void TRBTreeMap<Key, Data>::Del(const Key& key)
 {
   TNode* z = TNULL;
   TNode* x, y;
   TNode* temp = pRoot;
   while (temp != TNULL) {
-	if (temp->data.key == k) {
+	if (temp->data.key == key) {
 	  z = temp;
 	}
-	if (temp->data.key < k) {
+	if (temp->data.key < key) {
 	  temp = temp->pRight;
 	}
 	else {
